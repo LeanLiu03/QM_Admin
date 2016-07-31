@@ -20,7 +20,7 @@
 							<!--</l:HorizontalLayout>-->
 							<Label id="lblProjectType" text="{i18n>projectType}" labelFor="sltProjectType" required="true"></Label>
 							<!--Project Type-->
-							<Select id="sltProjectType" forceSelection="true" change = "onPrjTypeChange">
+							<Select id="sltProjectType" forceSelection="true" change="onPrjTypeChange">
 								<layoutData>
 									<l:GridData span="L6 M6 S8"/>
 								</layoutData>
@@ -203,12 +203,27 @@
 									<l:GridData span="L1 M1 S2"/>
 								</layoutData>
 							</Input>
+							<Text text = "Please click split button to generate sprint list" />
 							<!--<Button id = "btnSplitSprint" text = "{i18n>splitSprint}" press = "onSplitSprint">-->
 							<!--	<layoutData>-->
 							<!--		<l:GridData span="L1 M1 S2"/>-->
 							<!--	</layoutData></Button>-->
 						</f:content>
 					</f:SimpleForm>
+					<Panel id="pnlSprint" headerText="Sprint Detail">
+						<content>
+							<Table id="tblSPrintList">
+								<columns>
+									<Column>
+										<Text text="Sprint n"/>
+									</Column>
+									<Column>
+										<Text text="Date Range"/>
+									</Column>
+								</columns>
+							</Table>
+						</content>
+					</Panel>
 				</IconTabFilter>
 				<IconTabFilter id="itfQgate" text="{i18n>qGate}">
 					<f:SimpleForm id="sfmQgate" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0"

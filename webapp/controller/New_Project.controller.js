@@ -34,11 +34,15 @@ sap.ui.define([
 			var displayFlag = selectedItem.getKey() === "MDG_WF";
 			var spfWF = sap.ui.getCore().byId(this.viewId + "--" + "sfmWaterfall");
 			var spfD3 = sap.ui.getCore().byId(this.viewId + "--" + "sfmD3");
-			if (spfWF !== null) {
+			var sprintPanel = sap.ui.getCore().byId(this.viewId + "--" + "pnlSprint");
+			if (spfWF) {
 				spfWF.setVisible(displayFlag);
 			}
-			if (spfD3 !== null) {
+			if (spfD3) {
 				spfD3.setVisible(!displayFlag);
+			}
+			if (sprintPanel){
+				sprintPanel.setVisible(!displayFlag);
 			}
 
 		},

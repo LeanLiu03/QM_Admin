@@ -13,37 +13,24 @@
 			</tnt:ToolHeader>
 		</tnt:header>
 		<tnt:sideContent>
-			<tnt:SideNavigation id = "sideNavigation" expanded="true">
+			<tnt:SideNavigation id = "sideNavigation" expanded="true" itemSelect = "onItemSelect">
 				<tnt:item>
 					<tnt:NavigationList>
 						<tnt:NavigationListItem text="{i18n>project}" icon = "sap-icon://project-definition-triangle-2">
-							<tnt:NavigationListItem text="{i18n>overview}"></tnt:NavigationListItem>
-							<tnt:NavigationListItem text="{i18n>new_project}"></tnt:NavigationListItem>
+							<tnt:NavigationListItem text="{i18n>overview}" id = "nav_Overview" key = "overview"></tnt:NavigationListItem>
+							<tnt:NavigationListItem text="{i18n>new_Project}" id = "nav_NewProject" key = "newProject" ></tnt:NavigationListItem>
+							<tnt:NavigationListItem text="{i18n>edit_Project}" id = "nav_EditProject" key = "editProject" ></tnt:NavigationListItem>
+								<tnt:NavigationListItem text="{i18n>display_Project}" id = "nav_DisplayProject" key = "displayProject" ></tnt:NavigationListItem>
 						</tnt:NavigationListItem>
 					</tnt:NavigationList>
 				</tnt:item>
-				<tnt:fixedItem>
-					<tnt:NavigationList>
-						<tnt:NavigationListItem text="Overview" icon = "sap-icon://menu2"/>
-						<tnt:NavigationListItem text="{i18n>overview}"/>
-						<tnt:NavigationListItem text="{i18n>overview}"/>
-						<tnt:NavigationListItem text="{i18n>overview}"/>
-					</tnt:NavigationList>
-				</tnt:fixedItem>
 			</tnt:SideNavigation>
 		</tnt:sideContent>
-		<!--<tnt:mainContents>-->
-		<!--	<NavContainer id="pageContainer1">-->
-		<!--		<ScrollContainer>-->
-		<!--			<Page title="Page Title"></Page>-->
-		<!--		</ScrollContainer>-->
-		<!--		<ScrollContainer>-->
-		<!--			<Text text="Hello"/>-->
-		<!--		</ScrollContainer>-->
-		<!--		<ScrollContainer id="pageContainer2">-->
-		<!--			<Text text="Cool"/>-->
-		<!--		</ScrollContainer>-->
-		<!--	</NavContainer>-->
-		<!--</tnt:mainContents>-->
+		<tnt:mainContents>
+			<NavContainer id="pageContent">
+				<mvc:XMLView viewName = "QM_Admin.view.Overview" id = "overview" />
+				<mvc:XMLView viewName = "QM_Admin.view.New_Project" id = "newProject" />
+			</NavContainer>
+		</tnt:mainContents>
 	</tnt:ToolPage>
 </mvc:View>

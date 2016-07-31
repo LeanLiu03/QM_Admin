@@ -1,0 +1,327 @@
+<mvc:View controllerName="QM_Admin.controller.New_Project" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Page title="{i18n>new_Project}">
+		<!--<VBox>-->
+		<IconTabBar id="itbProject" expandable="true" class="sapUiResponsiveContentPadding">
+			<items>
+				<IconTabFilter id="itfBasicInfo" text="{i18n>basicInfo}">
+					<f:SimpleForm id="sfmBasicInfo" editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+						columnsL="2" columnsM="2" class="editableForm" title="{i18n>new_Project}">
+						<f:content>
+							<!--<f:FormContainer>-->
+							<!--<l:HorizontalLayout>-->
+							<core:Title text="{i18n>projectData}" emphasized="true"/>
+							<Label id="lblProjectName" text="{i18n>projectName}" labelFor="iptProjectName" required="true"></Label>
+							<Input id="iptProjectName">
+								<layoutData>
+									<l:GridData span="L6 M6 S8"/>
+								</layoutData>
+							</Input>
+							<!--</l:HorizontalLayout>-->
+							<Label id="lblProjectType" text="{i18n>projectType}" labelFor="sltProjectType" required="true"></Label>
+							<!--Project Type-->
+							<Select id="sltProjectType" forceSelection="true" change = "onPrjTypeChange">
+								<layoutData>
+									<l:GridData span="L6 M6 S8"/>
+								</layoutData>
+								<items>
+									<core:Item key="PT_BLANK"></core:Item>
+									<core:Item text="{i18n>item_cdp}" key="PT_CDP"></core:Item>
+									<core:Item text="{i18n>item_fbs}" key="PT_FBS"></core:Item>
+									<core:Item text="{i18n>item_rcs}" key="PT_RCS"></core:Item>
+									<core:Item text="{i18n>item_odu}" key="PT_ODU"></core:Item>
+								</items>
+							</Select>
+							<!--Project Size-->
+							<Label id="lblProjectSize" text="{i18n>projectSize}" labelFor="sltProjectSize" required="true"/>
+							<Select id="sltProjectSize" forceSelection="true">
+								<layoutData>
+									<l:GridData span="L6 M6 S8"/>
+								</layoutData>
+								<items>
+									<core:Item key="PS_BLANK"></core:Item>
+									<core:Item text="{i18n>ps_small}" key="PS_SMALL"></core:Item>
+									<core:Item text="{i18n>ps_medium}" key="PS_MEDIUM"></core:Item>
+									<core:Item text="{i18n>ps_large}" key="PS_LARGE"></core:Item>
+									<core:Item text="{i18n>ps_xlarge}" key="PS_XLARGE"></core:Item>
+								</items>
+							</Select>
+							<!--Methodology-->
+							<Label id="lblMethodology" text="{i18n>methodology}" labelFor="sltProjectSize" required="true"/>
+							<Select id="sltMethodology" forceSelection="true" change="onMethodologyChange">
+								<layoutData>
+									<l:GridData span="L6 M6 S8"/>
+								</layoutData>
+								<items>
+									<core:Item></core:Item>
+									<core:Item text="{i18n>mdg_waterfall}" key="MDG_WF"></core:Item>
+									<core:Item text="{i18n>mdg_d3}" key="MDG_D3"></core:Item>
+								</items>
+							</Select>
+							<!--</f:FormContainer>-->
+							<!--</f:content>-->
+							<!--<f:content>-->
+							<!--<core:Title text="text"/>-->
+							<Label id="lblRegion" text="{i18n>region}" labelFor="sltRegion" required="true"/>
+							<Select id="sltRegion" forceSelection="true">
+								<layoutData>
+									<l:GridData span="L6 M6 S8"/>
+								</layoutData>
+								<items>
+									<core:Item key="PS_BLANK"></core:Item>
+									<core:Item text="{i18n>emea}" key="RGN_EMEA"></core:Item>
+									<core:Item text="{i18n>apj}" key="RGN_APJ"></core:Item>
+									<core:Item text="{i18n>ua}" key="RGN_UA"></core:Item>
+									<core:Item text="{i18n>cn}" key="RGN_CN"></core:Item>
+								</items>
+							</Select>
+							<core:Title text="{i18n>manager}" emphasized="true"/>
+							<!--Project Manager-->
+							<Label id="lblProjectManager" text="{i18n>projectManager}" labelFor="iptProjectName" required="true"></Label>
+							<Input id="iptProjectManager">
+								<layoutData>
+									<l:GridData span="L6 M6 S8"/>
+								</layoutData>
+							</Input>
+							<!--Project Manager-->
+							<Label id="lblQMManager" text="{i18n>qMManager}" labelFor="iptQMManager" required="true"></Label>
+							<Input id="iptQMManager">
+								<layoutData>
+									<l:GridData span="L6 M6 S8"/>
+								</layoutData>
+							</Input>
+						</f:content>
+					</f:SimpleForm>
+				</IconTabFilter>
+				<IconTabFilter id="itfTimeline" text="{i18n>projectTimeline}">
+					<!--Waterfall Timeline-->
+					<f:SimpleForm id="sfmWaterfall" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0"
+						columnsL="1" columnsM="1" class="editableForm" title="{i18n>mdg_waterfall}">
+						<f:content>
+							<!--Initial Project Phase-->
+							<Label id="lblProjectInitPhase" text="{i18n>projectInitPhase}" labelFor="ckbProjectInitPhase"></Label>
+							<CheckBox id="ckbProjectInitPhase" selected="true" width="auto">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+							<DateRangeSelection id="drsProjectInitPhase" valueFormat="yyyyMMdd" displayFormat="short">
+								<layoutData>
+									<l:GridData span="L3 M3 S4"/>
+								</layoutData>
+							</DateRangeSelection>
+							<!--Specification Phase-->
+							<Label id="lblSpecificationPhase" text="{i18n>specificationPhase}" labelFor="ckbSpecificationPhase"></Label>
+							<CheckBox id="ckbSpecificationPhase" selected="true" width="auto">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+							<DateRangeSelection id="drsSpecificationPhase" valueFormat="yyyyMMdd" displayFormat="short">
+								<layoutData>
+									<l:GridData span="L3 M3 S4"/>
+								</layoutData>
+							</DateRangeSelection>
+							<!--Design Phase-->
+							<Label id="lblDesignPhase" text="{i18n>designPhase}" labelFor="ckbDesignPhase"></Label>
+							<CheckBox id="ckbDesignPhase" selected="true" width="auto">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+							<DateRangeSelection id="drsDesignPhase" valueFormat="yyyyMMdd" displayFormat="short">
+								<layoutData>
+									<l:GridData span="L3 M3 S4"/>
+								</layoutData>
+							</DateRangeSelection>
+							<!--MIT-->
+							<Label id="lblMITPhase" text="{i18n>MITPhase}" labelFor="ckbMITPhase"></Label>
+							<CheckBox id="ckbMITPhase" selected="true" width="auto">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+							<DateRangeSelection id="drsMITPhase" valueFormat="yyyyMMdd" displayFormat="short">
+								<layoutData>
+									<l:GridData span="L3 M3 S4"/>
+								</layoutData>
+							</DateRangeSelection>
+							<!--UAT Phase-->
+							<Label id="lblUATPhase" text="{i18n>UATPhase}" labelFor="ckbUATPhase"></Label>
+							<CheckBox id="ckbUATPhase" selected="true" width="auto">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+							<DateRangeSelection id="drsUATPhase" valueFormat="yyyyMMdd" displayFormat="short">
+								<layoutData>
+									<l:GridData span="L3 M3 S4"/>
+								</layoutData>
+							</DateRangeSelection>
+						</f:content>
+					</f:SimpleForm>
+					<!--D3 Timeline-->
+					<f:SimpleForm id="sfmD3" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0"
+						columnsL="1" columnsM="1" class="editableForm">
+						<f:toolbar>
+							<Toolbar id="tlbD3">
+								<Title text="{i18n>mdg_d3}"/>
+								<ToolbarSpacer/>
+								<Button id="btnSplitSprint" icon="sap-icon://add-activity" text="{i18n>split}" tooltip="{i18n>splitSprint}"/>
+							</Toolbar>
+						</f:toolbar>
+						<f:content>
+							<!--<f:FormContainer>-->
+							<!--<l:HorizontalLayout>-->
+							<Label id="lblD3MITPhase" text="{i18n>MITPhase}" labelFor="ckbD3MITPhase"></Label>
+							<CheckBox id="D3MITPhase" selected="true" width="auto">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+							<DateRangeSelection id="drsD3MITPhase" valueFormat="yyyyMMdd" displayFormat="short">
+								<layoutData>
+									<l:GridData span="L3 M3 S4"/>
+								</layoutData>
+							</DateRangeSelection>
+							<!--UAT Phase-->
+							<Label id="lblD3UATPhase" text="{i18n>UATPhase}" labelFor="ckbD3UATPhase"></Label>
+							<CheckBox id="ckbD3UATPhase" selected="true" width="auto">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+							<DateRangeSelection id="drs" valueFormat="yyyyMMdd" displayFormat="short">
+								<layoutData>
+									<l:GridData span="L3 M3 S4"/>
+								</layoutData>
+							</DateRangeSelection>
+							<!--Sprint-->
+							<Label id="lblD3SprintNum" text="{i18n>sprintNumber}" labelFor="iptSprintNum"></Label>
+							<Input value="1" id="iptSprintNum">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</Input>
+							<!--<Button id = "btnSplitSprint" text = "{i18n>splitSprint}" press = "onSplitSprint">-->
+							<!--	<layoutData>-->
+							<!--		<l:GridData span="L1 M1 S2"/>-->
+							<!--	</layoutData></Button>-->
+						</f:content>
+					</f:SimpleForm>
+				</IconTabFilter>
+				<IconTabFilter id="itfQgate" text="{i18n>qGate}">
+					<f:SimpleForm id="sfmQgate" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0"
+						columnsL="1" columnsM="1" class="editableForm" title="{i18n>qgate}">
+						<f:content>
+							<!--Qgate Statue-->
+							<Label id="lblQGateStatus" text="{i18n>qGateStatus}" labelFor="sltQGateStatus"></Label>
+							<Select id="sltQGateStatus" forceSelection="true">
+								<layoutData>
+									<l:GridData span="L3 M3 S6"/>
+								</layoutData>
+								<items>
+									<core:Item text="{i18n>qgates_NA}" key="NA"></core:Item>
+									<core:Item text="{i18n>qgates_Pass}" key="PASS"></core:Item>
+									<core:Item text="{i18n>qgates_Pass_W_Rsv}" key="PASS_W_RSV"></core:Item>
+									<core:Item text="{i18n>qgates_Fail}" key="FAIL"></core:Item>
+								</items>
+							</Select>
+							<Label id="lblQGateDate" text="{i18n>qGateDate}" labelFor="dpkQGateDate"></Label>
+							<DatePicker id="dpkQGateDate" valueFormat="yyyyMMdd" displayFormat="short" placeholder="Q-gate Date">
+								<layoutData>
+									<l:GridData span="L3 M3 S6"/>
+								</layoutData>
+							</DatePicker>
+						</f:content>
+					</f:SimpleForm>
+					<f:SimpleForm id="sfmQgateCDP" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0"
+						columnsL="1" columnsM="1" class="editableForm" title="{i18n>qgateCDP}">
+						<f:content>
+							<!--<core:Title text="{i18n>qgateCDP}" emphasized="true"/>-->
+							<!--<Panel headerText = "CDP">-->
+							<Label id="lblSD2DT" text="SD2DT" labelFor="ckbSD2DT"></Label>
+							<CheckBox id="ckbSD2DT" selected="true">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+							<Label id="lblDT2S" text="DT2S" labelFor="ckbDT2S"></Label>
+							<CheckBox id="ckbDT2S" selected="true">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+						</f:content>
+					</f:SimpleForm>
+					<f:SimpleForm id="sfmqgateFBS" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0"
+						columnsL="1" columnsM="1" class="editableForm" title="{i18n>qgateFBS}">
+						<f:content>
+							<!--</Panel>-->
+							<!--<Panel headerText = "CDP">-->
+							<Label id="lblP2D" text="P2D" labelFor="ckbP2D"></Label>
+							<CheckBox id="ckbP2D" selected="true">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+							<Label id="lblD2P" text="D2P" labelFor="ckbD2P"></Label>
+							<CheckBox id="ckbD2P" selected="true">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+							<Label id="lblP2R" text="P2R" labelFor="ckbP2R"></Label>
+							<CheckBox id="ckbP2R" selected="true">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+						</f:content>
+					</f:SimpleForm>
+					<f:SimpleForm id="sfmqgateRCS" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0"
+						columnsL="1" columnsM="1" class="editableForm" title="{i18n>qgateRCS}">
+						<f:content>
+							<!--<Panel headerText = "CDP">-->
+							<Label id="lblP2B" text="P2B" labelFor="ckbP2B"></Label>
+							<CheckBox id="ckbP2B" selected="true">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+							<Label id="lblB2P" text="B2P" labelFor="ckbD2P"></Label>
+							<CheckBox id="ckbB2P" selected="true">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+							<Label id="lblP2R_RCS" text="P2R" labelFor="ckbP2R_RCS"></Label>
+							<CheckBox id="ckbP2R_RCS" selected="true">
+								<layoutData>
+									<l:GridData span="L1 M1 S2"/>
+								</layoutData>
+							</CheckBox>
+						</f:content>
+					</f:SimpleForm>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		<!--</VBox>-->
+		<!--<Panel backgroundDesign  = "Solid">-->
+		<!--<IconTabBar id="itbTimeline" class="sapUiResponsiveContentPadding">-->
+		<!--	<items>-->
+		<!--		<IconTabFilter text="{i18n>projectTimeline}"></IconTabFilter>-->
+		<!--		<IconTabFilter text="{i18n>qGate}"></IconTabFilter>-->
+		<!--	</items>-->
+		<!--</IconTabBar>-->
+		<!--</Panel>-->
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button id="btnSave" text="{i18n>save}" type="Emphasized" press="onSavePress"/>
+					<Button id="btnCancel" text="{i18n>cancel}" press="onCancelPress"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

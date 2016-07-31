@@ -7,6 +7,11 @@
       "templateId": "ui5template.basicSAPUI5ApplicationProject",
       "templateVersion": "1.32.0",
       "dateTimeStamp": "Fri, 22 Jul 2016 08:07:45 GMT"
+    },
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Mon, 25 Jul 2016 13:09:52 GMT"
     }
   ],
   "translation": {

@@ -27,6 +27,11 @@ sap.ui.define([
 		onAfterRendering: function() {
 			//set the sideNavigation as expanded.
 			this.setSideExpanded(true);
+		},
+		onItemSelect:function(oEvent){
+			var item = oEvent.getParameter("item");
+			var viewId = this.getView().getId();
+			sap.ui.getCore().byId(viewId + '--' + "pageContent").to(viewId + '--' + item.getKey());
 		}
 	});
 

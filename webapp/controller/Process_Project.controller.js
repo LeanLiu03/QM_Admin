@@ -1,9 +1,10 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function(Controller) {
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/model/json/JSONModel"
+], function(Controller, JSONModel) {
 	"use strict";
 
-	return Controller.extend("QM_Admin.controller.New_Project", {
+	return Controller.extend("QM_Admin.controller.Process_Project", {
 		onInit: function() {
 			//Set the timeline and Q-gate tab as invisible if the project type is not select
 			this.viewId = this.getView().getId();
@@ -41,7 +42,7 @@ sap.ui.define([
 			if (spfD3) {
 				spfD3.setVisible(!displayFlag);
 			}
-			if (sprintPanel){
+			if (sprintPanel) {
 				sprintPanel.setVisible(!displayFlag);
 			}
 
@@ -92,6 +93,57 @@ sap.ui.define([
 		},
 		onPrjTypeChange: function(oEvent) {
 			this.setQgateVisibility();
+		},
+
+		onSelect: function(oEvent) {
+			// var eventSource = oEvent.getSource();
+			var prefix = this.viewId + "--";
+			var evtSource = oEvent.getSource();
+			if (!evtSource) {
+				return;
+			}
+			var controlName = evtSource.getId().substr(prefix.length);
+			// var loc = location.href;
+			var path = jQuery.sap.getModulePath("QM_Admin.model") + "/Field_Map.json";
+
+			var FieldJson = new JSONModel();
+
+			FieldJson.loadData(path, null, false);
+
+			var data = FieldJson.getData();
+
+			for (var i = 0; i < data.Field_Map.length; i++) {
+				if (data.Field_Map[i].fieldName === controlName) {
+					var targetControl = sap.ui.getCore().byId(this.viewId + "--" + data.Field_Map[i].targetFieldName);
+					if (targetControl) {
+						targetControl.setEnabled(evtSource.getSelected());
+					}
+					break;
+				}
+			}
+		},
+		onSplitSprint: function(oEvent) {
+			var sprintData = new JSONModel();
+			var arrayData = [];
+			var sprintList = {};
+			//Get sprint count
+			var sprintCount = sap.ui.getCore().byId(this.viewId + "--" + "iptSprintNum").getValue();
+			for (var i = 0; i < sprintCount; i++) {
+				arrayData.push({
+					Sprint_Id: i + 1,
+					Valid_Date: null
+				});
+				// var sprintDetail;
+				// sprintDetail.Sprint_Id = i + 1;
+				// sprintDetail.Valid_Date = "";
+			}
+			if (arrayData.length > 0) {
+				sprintList.sprintList = arrayData;
+				sprintData.setData(sprintList);
+				this.getView().setModel(sprintData,"SprintData");
+				sap.ui.getCore().byId(this.viewId + "--" + "tblSPrintList").setVisibleRowCount(7);
+
+			}
 		}
 	});
 });

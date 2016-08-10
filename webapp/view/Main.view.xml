@@ -16,11 +16,18 @@
 			<tnt:SideNavigation id = "sideNavigation" expanded="true" itemSelect = "onItemSelect">
 				<tnt:item>
 					<tnt:NavigationList>
-						<tnt:NavigationListItem text="{i18n>project}" icon = "sap-icon://project-definition-triangle-2">
+						<tnt:NavigationListItem text="{i18n>project}" icon = "sap-icon://grid">
 							<tnt:NavigationListItem text="{i18n>overview}" id = "nav_Overview" key = "overview"></tnt:NavigationListItem>
-							<tnt:NavigationListItem text="{i18n>new_Project}" id = "nav_NewProject" key = "newProject" ></tnt:NavigationListItem>
-							<tnt:NavigationListItem text="{i18n>edit_Project}" id = "nav_EditProject" key = "editProject" ></tnt:NavigationListItem>
-								<tnt:NavigationListItem text="{i18n>display_Project}" id = "nav_DisplayProject" key = "displayProject" ></tnt:NavigationListItem>
+							<tnt:NavigationListItem text="{i18n>new_Project}" id = "nav_NewProject" key = "{parts:[{path:'newProject'},{path:'C'}]}" ></tnt:NavigationListItem>
+							<tnt:NavigationListItem text="{i18n>edit_Project}" id = "nav_EditProject" key = "{parts:[{path:'editProject'},{path:'U'}]}" ></tnt:NavigationListItem>
+								<tnt:NavigationListItem text="{i18n>display_Project}" id = "nav_DisplayProject" key = "{parts:[{path:'displayProject'},{path:''}]}" ></tnt:NavigationListItem>
+						</tnt:NavigationListItem>
+						
+						<tnt:NavigationListItem text="{i18n>menu_configuration}" icon = "sap-icon://activities">
+						
+						</tnt:NavigationListItem>
+									<tnt:NavigationListItem text="{i18n>menu_management}" icon = "sap-icon://explorer">
+							<tnt:NavigationListItem text="{i18n>menu_Usr_Management}" id = "nav_usr_Management" key = "usr_Management"></tnt:NavigationListItem>
 						</tnt:NavigationListItem>
 					</tnt:NavigationList>
 				</tnt:item>
@@ -29,7 +36,9 @@
 		<tnt:mainContents>
 			<NavContainer id="pageContent">
 				<mvc:XMLView viewName = "QM_Admin.view.Overview" id = "overview" />
-				<mvc:XMLView viewName = "QM_Admin.view.New_Project" id = "newProject" />
+				<mvc:XMLView viewName = "QM_Admin.view.Process_Project" id = "newProject" />
+				<mvc:XMLView viewName = "QM_Admin.view.Process_Project" id = "editProject" />
+				<mvc:XMLView viewName = "QM_Admin.view.Process_Project" id = "displayProject" />
 			</NavContainer>
 		</tnt:mainContents>
 	</tnt:ToolPage>

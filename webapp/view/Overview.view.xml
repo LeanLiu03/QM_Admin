@@ -3,7 +3,56 @@
 			xmlns:mvc="sap.ui.core.mvc" 
 			xmlns="sap.m">
 	<Page title = "{i18n>projectOview}">
-		
+		<Table id = "tblProjectList" 
+				items = "{projectData>/ProjectData}" 
+				backgroundDesign = "Solid">
+			<headerToolbar>
+				<Toolbar>
+					<Title text = "{i18n>projectList}" />
+					<ToolbarSpacer />
+					<SearchField width = "50%" search = "onSearchPress" selectOnFocus = "false" />
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text = "{i18n>projectName}" width = "10em"/>
+				</Column>
+				<Column>
+					<Text text = "{i18n>projectType}" />
+				</Column>
+				<Column>
+					<Text text = "{i18n>projectSize}" />
+				</Column>
+				<Column>
+					<Text text = "{i18n>projectMethodology}" />
+				</Column>
+				<Column>
+					<Text text = "{i18n>region}" />
+				</Column>
+				<Column>
+					<Text text = "{i18n>projectManager}" />
+				</Column>
+				<Column>
+					<Text text = "{i18n>qMManager}" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem
+				type = "Active">
+					<cells> 
+						<ObjectIdentifier 
+						title = "{projectData>ProjectName}"
+						text = "{projectData>Description}" />
+						<Text text = "{path:'projectData>ProjectType',formatter:'.formatter.showProjectTypeDesc'}" />
+						<Text text = "{path:'projectData>ProjectSize',formatter:'.formatter.showProjectSizeDesc'}" />
+						<Text text = "{path:'projectData>Methodology',formatter:'.formatter.showProjectMethodologyDesc'}" />
+						<Text text = "{path:'projectData>Region',formatter:'.formatter.showRegionDesc'}" />
+						<Text text = "{projectData>ProjectManager}" />
+						<Text text = "{projectData>QMManager}" />
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
 	</Page>
 
 </mvc:View>

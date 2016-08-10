@@ -1,5 +1,5 @@
-<mvc:View controllerName="QM_Admin.controller.New_Project" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
-	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+<mvc:View controllerName="QM_Admin.controller.Process_Project" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:tb="sap.ui.table">
 	<Page title="{i18n>new_Project}">
 		<!--<VBox>-->
 		<IconTabBar id="itbProject" expandable="true" class="sapUiResponsiveContentPadding">
@@ -17,6 +17,13 @@
 									<l:GridData span="L6 M6 S8"/>
 								</layoutData>
 							</Input>
+							<!--Project Description-->
+							<Label id="lblProjectDesc" text = "{i18n>projectDesc}" labelFor = "txaProjectDesc"/>
+							<TextArea id="txaProjectDesc" rows = "3" >
+								<layoutData>
+									<l:GridData span="L6 M6 S8"/>
+								</layoutData>
+							</TextArea>
 							<!--</l:HorizontalLayout>-->
 							<Label id="lblProjectType" text="{i18n>projectType}" labelFor="sltProjectType" required="true"></Label>
 							<!--Project Type-->
@@ -78,14 +85,14 @@
 							<core:Title text="{i18n>manager}" emphasized="true"/>
 							<!--Project Manager-->
 							<Label id="lblProjectManager" text="{i18n>projectManager}" labelFor="iptProjectName" required="true"></Label>
-							<Input id="iptProjectManager">
+							<Input id="iptProjectManager" showValueHelp="true">
 								<layoutData>
 									<l:GridData span="L6 M6 S8"/>
 								</layoutData>
 							</Input>
 							<!--Project Manager-->
 							<Label id="lblQMManager" text="{i18n>qMManager}" labelFor="iptQMManager" required="true"></Label>
-							<Input id="iptQMManager">
+							<Input id="iptQMManager" showValueHelp="true">
 								<layoutData>
 									<l:GridData span="L6 M6 S8"/>
 								</layoutData>
@@ -100,7 +107,7 @@
 						<f:content>
 							<!--Initial Project Phase-->
 							<Label id="lblProjectInitPhase" text="{i18n>projectInitPhase}" labelFor="ckbProjectInitPhase"></Label>
-							<CheckBox id="ckbProjectInitPhase" selected="true" width="auto">
+							<CheckBox id="ckbProjectInitPhase" selected="true" width="auto" select="onSelect">
 								<layoutData>
 									<l:GridData span="L1 M1 S2"/>
 								</layoutData>
@@ -112,7 +119,7 @@
 							</DateRangeSelection>
 							<!--Specification Phase-->
 							<Label id="lblSpecificationPhase" text="{i18n>specificationPhase}" labelFor="ckbSpecificationPhase"></Label>
-							<CheckBox id="ckbSpecificationPhase" selected="true" width="auto">
+							<CheckBox id="ckbSpecificationPhase" selected="true" width="auto" select="onSelect">
 								<layoutData>
 									<l:GridData span="L1 M1 S2"/>
 								</layoutData>
@@ -124,7 +131,7 @@
 							</DateRangeSelection>
 							<!--Design Phase-->
 							<Label id="lblDesignPhase" text="{i18n>designPhase}" labelFor="ckbDesignPhase"></Label>
-							<CheckBox id="ckbDesignPhase" selected="true" width="auto">
+							<CheckBox id="ckbDesignPhase" selected="true" width="auto" select="onSelect">
 								<layoutData>
 									<l:GridData span="L1 M1 S2"/>
 								</layoutData>
@@ -136,7 +143,7 @@
 							</DateRangeSelection>
 							<!--MIT-->
 							<Label id="lblMITPhase" text="{i18n>MITPhase}" labelFor="ckbMITPhase"></Label>
-							<CheckBox id="ckbMITPhase" selected="true" width="auto">
+							<CheckBox id="ckbMITPhase" selected="true" width="auto" select="onSelect">
 								<layoutData>
 									<l:GridData span="L1 M1 S2"/>
 								</layoutData>
@@ -148,7 +155,7 @@
 							</DateRangeSelection>
 							<!--UAT Phase-->
 							<Label id="lblUATPhase" text="{i18n>UATPhase}" labelFor="ckbUATPhase"></Label>
-							<CheckBox id="ckbUATPhase" selected="true" width="auto">
+							<CheckBox id="ckbUATPhase" selected="true" width="auto" select="onSelect">
 								<layoutData>
 									<l:GridData span="L1 M1 S2"/>
 								</layoutData>
@@ -167,14 +174,14 @@
 							<Toolbar id="tlbD3">
 								<Title text="{i18n>mdg_d3}"/>
 								<ToolbarSpacer/>
-								<Button id="btnSplitSprint" icon="sap-icon://add-activity" text="{i18n>split}" tooltip="{i18n>splitSprint}"/>
+								<Button id="btnSplitSprint" icon="sap-icon://add-activity" text="{i18n>split}" tooltip="{i18n>splitSprint}" press="onSplitSprint"/>
 							</Toolbar>
 						</f:toolbar>
 						<f:content>
 							<!--<f:FormContainer>-->
 							<!--<l:HorizontalLayout>-->
 							<Label id="lblD3MITPhase" text="{i18n>MITPhase}" labelFor="ckbD3MITPhase"></Label>
-							<CheckBox id="D3MITPhase" selected="true" width="auto">
+							<CheckBox id="ckbD3MITPhase" selected="true" width="auto" select="onSelect">
 								<layoutData>
 									<l:GridData span="L1 M1 S2"/>
 								</layoutData>
@@ -186,12 +193,12 @@
 							</DateRangeSelection>
 							<!--UAT Phase-->
 							<Label id="lblD3UATPhase" text="{i18n>UATPhase}" labelFor="ckbD3UATPhase"></Label>
-							<CheckBox id="ckbD3UATPhase" selected="true" width="auto">
+							<CheckBox id="ckbD3UATPhase" selected="true" width="auto" select="onSelect">
 								<layoutData>
 									<l:GridData span="L1 M1 S2"/>
 								</layoutData>
 							</CheckBox>
-							<DateRangeSelection id="drs" valueFormat="yyyyMMdd" displayFormat="short">
+							<DateRangeSelection id="drsUATPhrase" valueFormat="yyyyMMdd" displayFormat="short">
 								<layoutData>
 									<l:GridData span="L3 M3 S4"/>
 								</layoutData>
@@ -203,7 +210,7 @@
 									<l:GridData span="L1 M1 S2"/>
 								</layoutData>
 							</Input>
-							<Text text = "Please click split button to generate sprint list" />
+							<Text text="Please click split button to generate sprint list"/>
 							<!--<Button id = "btnSplitSprint" text = "{i18n>splitSprint}" press = "onSplitSprint">-->
 							<!--	<layoutData>-->
 							<!--		<l:GridData span="L1 M1 S2"/>-->
@@ -212,16 +219,30 @@
 					</f:SimpleForm>
 					<Panel id="pnlSprint" headerText="Sprint Detail">
 						<content>
-							<Table id="tblSPrintList">
-								<columns>
-									<Column>
+							<tb:Table id="tblSPrintList" rows="{SprintData>/sprintList}" visibleRowCount="1">
+								<tb:columns>
+									<tb:Column>
 										<Text text="Sprint n"/>
-									</Column>
-									<Column>
+										<tb:template>
+											<Input enabled="false" value="{SprintData>Sprint_Id}">
+												<layoutData>
+													<l:GridData span="L1 M1 S2"/>
+												</layoutData>
+											</Input>
+										</tb:template>
+									</tb:Column>
+									<tb:Column>
 										<Text text="Date Range"/>
-									</Column>
-								</columns>
-							</Table>
+										<tb:template>
+											<DateRangeSelection value="{SprintData>Valid_Date}" displayFormat="short">
+												<layoutData>
+													<l:GridData span="L3 M3 S4"/>
+												</layoutData>
+											</DateRangeSelection>
+										</tb:template>
+									</tb:Column>
+								</tb:columns>
+							</tb:Table>
 						</content>
 					</Panel>
 				</IconTabFilter>

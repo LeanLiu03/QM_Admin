@@ -1,0 +1,24 @@
+{
+	"Field_Map": [{
+		"fieldName": "ckbProjectInitPhase",
+		"targetFieldName": "drsProjectInitPhase"
+	}, {
+		"fieldName": "ckbSpecificationPhase",
+		"targetFieldName": "drsSpecificationPhase"
+	}, {
+		"fieldName": "ckbDesignPhase",
+		"targetFieldName": "drsDesignPhase"
+	}, {
+		"fieldName": "ckbMITPhase",
+		"targetFieldName": "drsMITPhase"
+	}, {
+		"fieldName": "ckbUATPhase",
+		"targetFieldName": "drsUATPhase"
+	}, {
+		"fieldName": "ckbD3MITPhase",
+		"targetFieldName": "drsD3MITPhase"
+	}, {
+		"fieldName": "ckbD3UATPhase",
+		"targetFieldName": "drsUATPhrase"
+	}]
+}

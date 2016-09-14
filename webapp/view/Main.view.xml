@@ -1,4 +1,4 @@
-<mvc:View controllerName="QM_Admin.controller.Main" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" height = "100%"
+<mvc:View controllerName="QM_Admin.controller.Main" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" height="100%"
 	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt">
 	<tnt:ToolPage id="toolPage">
 		<tnt:header>
@@ -9,36 +9,46 @@
 					</layoutData>
 				</Button>
 				<ToolbarSpacer></ToolbarSpacer>
-				<Button id="userInfo" type="Transparent" tooltip = "Administration" text="Lean.Liu" press="onUserPress"></Button>
+				<Button id="userInfo" type="Transparent" tooltip="Administration" text="Lean.Liu" press="onUserPress"></Button>
 			</tnt:ToolHeader>
 		</tnt:header>
 		<tnt:sideContent>
-			<tnt:SideNavigation id = "sideNavigation" expanded="true" itemSelect = "onItemSelect">
+			<tnt:SideNavigation id="sideNavigation" expanded="true" itemSelect="onItemSelect">
 				<tnt:item>
 					<tnt:NavigationList>
-						<tnt:NavigationListItem text="{i18n>project}" icon = "sap-icon://grid">
-							<tnt:NavigationListItem text="{i18n>overview}" id = "nav_Overview" key = "overview"></tnt:NavigationListItem>
-							<tnt:NavigationListItem text="{i18n>new_Project}" id = "nav_NewProject" key = "{parts:[{path:'newProject'},{path:'C'}]}" ></tnt:NavigationListItem>
-							<tnt:NavigationListItem text="{i18n>edit_Project}" id = "nav_EditProject" key = "{parts:[{path:'editProject'},{path:'U'}]}" ></tnt:NavigationListItem>
-								<tnt:NavigationListItem text="{i18n>display_Project}" id = "nav_DisplayProject" key = "{parts:[{path:'displayProject'},{path:''}]}" ></tnt:NavigationListItem>
+						<tnt:NavigationListItem text="{i18n>project}" icon="sap-icon://grid">
+							<tnt:NavigationListItem text="{i18n>overview}" id="nav_Overview" key="overview"></tnt:NavigationListItem>
+							<tnt:NavigationListItem text="{i18n>new_Project}" id="nav_NewProject" key="{parts:[{path:'newProject'},{path:'C'}]}"></tnt:NavigationListItem>
+							<!--<tnt:NavigationListItem text="{i18n>edit_Project}" id = "nav_EditProject" key = "{parts:[{path:'project_Ini'},{path:'U'},{path:'C'}]}" ></tnt:NavigationListItem>-->
+							<!--	<tnt:NavigationListItem text="{i18n>display_Project}" id = "nav_DisplayProject" key = "{parts:[{path:'project_Ini'},{path:''}]}" ></tnt:NavigationListItem>-->
 						</tnt:NavigationListItem>
-						
-						<tnt:NavigationListItem text="{i18n>menu_configuration}" icon = "sap-icon://activities">
-						
+						<tnt:NavigationListItem text="{i18n>menu_configuration}" icon="sap-icon://activities">
+							<tnt:NavigationListItem text="{i18n>menu_projectTypeDef}" id="nav_ProjectTypeDef" key="projectTypeDef"></tnt:NavigationListItem>
+							<tnt:NavigationListItem text="{i18n>menu_MethodologyDef}" id="nav_MethodologyDef" key="methodologyDef"></tnt:NavigationListItem>
+							<tnt:NavigationListItem text="{i18n>menu_Comp_Act_Def}" id="nav_Comp_Act_Def" key="comp_Act_Def"></tnt:NavigationListItem>
 						</tnt:NavigationListItem>
-									<tnt:NavigationListItem text="{i18n>menu_management}" icon = "sap-icon://explorer">
-							<tnt:NavigationListItem text="{i18n>menu_Usr_Management}" id = "nav_usr_Management" key = "usr_Management"></tnt:NavigationListItem>
+						<tnt:NavigationListItem text="{i18n>menu_management}" icon="sap-icon://explorer">
+							<tnt:NavigationListItem text="{i18n>menu_Usr_Management}" id="nav_usr_Management" key="usr_Management"></tnt:NavigationListItem>
 						</tnt:NavigationListItem>
 					</tnt:NavigationList>
 				</tnt:item>
 			</tnt:SideNavigation>
 		</tnt:sideContent>
 		<tnt:mainContents>
-			<NavContainer id="pageContent">
-				<mvc:XMLView viewName = "QM_Admin.view.Overview" id = "overview" />
-				<mvc:XMLView viewName = "QM_Admin.view.Process_Project" id = "newProject" />
-				<mvc:XMLView viewName = "QM_Admin.view.Process_Project" id = "editProject" />
-				<mvc:XMLView viewName = "QM_Admin.view.Process_Project" id = "displayProject" />
+			<NavContainer id="pageContent" initialPage="overview">
+				<mvc:XMLView viewName="QM_Admin.view.Project_Ini" id="project_Ini"/>
+				<mvc:XMLView viewName="QM_Admin.view.Overview" id="overview"/>
+				<mvc:XMLView viewName="QM_Admin.view.Process_Project" id="newProject"/>
+				<mvc:XMLView viewName="QM_Admin.view.Process_Project" id="editProject"/>
+				<mvc:XMLView viewName="QM_Admin.view.Process_Project" id="displayProject"/>
+				<mvc:XMLView viewName="QM_Admin.view.Methodology" id="methodologyDef"/>
+				<mvc:XMLView viewName="QM_Admin.view.ProjectType" id="projectTypeDef"/>
+				<mvc:XMLView viewName="QM_Admin.view.QMComponent" id="comp_Act_Def"/>
+				<mvc:XMLView viewName="QM_Admin.view.UserManagement" id="usr_Management"/>
+				<mvc:XMLView viewName="QM_Admin.view.ProcessProjectType" id="vwe_ProcessProjectType"/>
+				<mvc:XMLView viewName="QM_Admin.view.ProcessMethodology" id="vwe_ProcessMethodology"/>
+				<mvc:XMLView viewName="QM_Admin.view.ProcessComponent" id="vwe_ProcessComponent"/>
+				<mvc:XMLView viewName="QM_Admin.view.Process_UserManagement" id="vwe_ProcessUserManagement"/>
 			</NavContainer>
 		</tnt:mainContents>
 	</tnt:ToolPage>

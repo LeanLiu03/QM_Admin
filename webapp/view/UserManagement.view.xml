@@ -1,0 +1,64 @@
+<mvc:View controllerName="QM_Admin.controller.UserManagement" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
+	height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<Page title="{i18n>menu_Usr_Management}">
+		<Table id="tblUser" items="{UserInfo>/UserInfo}" backgroundDesign="Solid" itemPress = "onItemClick" mode = "MultiSelect">
+			<headerToolbar>
+				<Toolbar>
+					<!--<Title text = "{i18n>projectList}" />-->
+					<ToolbarSpacer/>
+					<SearchField width="50%" search="onSearchPress" selectOnFocus="false"/>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="{i18n>UserName}" width="10em"/>
+				</Column>
+				<Column>
+					<Text text="{i18n>UserMail}" width="10em"/>
+				</Column>
+				<Column>
+					<Text text="{i18n>WorkPhone}" width="10em"/>
+				</Column>
+				<Column>
+					<Text text="{i18n>MobilePhone}" width="10em"/>
+				</Column>
+				<Column>
+					<Text text="{i18n>Department}" width="10em"/>
+				</Column>
+				<Column>
+					<Text text="{i18n>Status}"/>
+				</Column>
+				<Column>
+					<Text text="{i18n>CreatedOn}" width="10em"/>
+				</Column>
+				<Column>
+					<Text text="{i18n>LastLogon}" width="10em"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Active">
+					<cells>
+						<ObjectIdentifier title="{UserInfo>UserId}" text="{UserInfo>FirstName} {UserInfo>LastName}"/>
+						<Text text="{UserInfo>Mail}"/>
+						<Text text="{UserInfo>WorkPhone}"/>
+						<Text text="{UserInfo>MobilePhone}"/>
+						<Text text="{UserInfo>Department}"/>
+						<Text text="{UserInfo>Status}"/>
+						<Text text="{UserInfo>CreatedOn}"/>
+						<Text text="{UserInfo>LastLogon}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<footer>
+			<OverflowToolbar id="oftToolbar">
+				<ToolbarSpacer/>
+				<!--<Button id="btnSave" text="Save" type = "Emphasized" icon="sap-icon://save"/>-->
+				<!--<Button id="btnCancel" text="Cancel" icon="sap-icon://cancel"/>-->
+				<OverflowToolbarButton text="Add" icon="sap-icon://add" press = "onAddNewUser"/>
+				<!--<OverflowToolbarButton text="Edit" icon="sap-icon://edit"/>-->
+				<OverflowToolbarButton text="Delete" icon="sap-icon://delete" press = "onDeleteUser"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

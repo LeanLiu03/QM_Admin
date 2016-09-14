@@ -1,0 +1,36 @@
+{
+	"Component":[{
+		"CompName":"DOC",
+		"Description":"Document",
+		"Activity":[{
+			"Name":"HLD",
+			"Category":"DOC",
+			"Description":"High Level Design"
+		},{
+			"Name":"CGD",
+			"Category":"PRO",
+			"Description":"Configuration Guide"
+		},{
+			"Name":"TD",
+			"Category":"SRV",
+			"Description":"Technical Document"
+		}]
+	},{
+		"CompName":"SOXIP",
+		"Description":"SOX/IP",
+			"Activity":[{
+			"Name":"HLD",
+			"Category":"DOC",
+			"Description":"High Level Design"
+		}]
+	},
+	{
+		"CompName":"QUALITY",
+		"Description":"Quality",
+			"Activity":[{
+			"Name":"HLD",
+			"Category":"DOC",
+			"Description":"High Level Design"
+		}]
+	}]
+}

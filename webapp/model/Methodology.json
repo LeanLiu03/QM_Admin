@@ -1,0 +1,41 @@
+{
+	"Methodology": [{
+		"Type": "WF",
+		"Description": "Waterfall",
+		"Scrum":false,
+		"Phase": [{
+			"PhaseName": "INI_PHASE",
+			"Description": "Initial Phase"
+		}, {
+			"PhaseName": "SPEC_PHASE",
+			"Description": "Spec Phase"
+		},
+		{
+			"PhaseName": "DESIGN_PHASE",
+			"Description": "Design Phase"
+		}]
+	}, {
+		"Type": "D3",
+		"Description": "D3 Scrum",
+		"Scrum":true,
+		"Phase": [{
+			"PhaseName": "INI_PHASE",
+			"Description": "Initial Phase"
+		}, {
+			"PhaseName": "SPEC_PHASE",
+			"Description": "Spec Phase"
+		},
+		{
+			"PhaseName": "DESIGN_PHASE",
+			"Description": "Design Phase"
+		},
+		{
+			"PhaseName": "REALIZE_PHASE",
+			"Description": "Realization Phase"
+		},
+		{
+			"PhaseName": "OTHER_PHASE",
+			"Description": "Other Phase"
+		}]
+	}]
+}

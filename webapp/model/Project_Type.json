@@ -1,0 +1,39 @@
+{
+	"ProjectType": [{
+		"Type": "CDP",
+		"Description": "CDP",
+		"QGate": [{
+			"QGate": "SD2DT",
+			"Description": "SD2DT"
+		}, {
+			"QGate": "DT2S",
+			"Description": "DT2S"
+		}]
+	}, {
+		"Type": "FBS",
+		"Description": "FBS",
+		"QGate": [{
+			"QGate": "P2D",
+			"Description": "P2D"
+		}, {
+			"QGate": "D2P",
+			"Description": "D2P"
+		}, {
+			"QGate": "P2R",
+			"Description": "P2R"
+		}]
+	}, {
+		"Type": "RCS",
+		"Description": "RCS",
+		"QGate": [{
+			"QGate": "P2B",
+			"Description": "P2B"
+		}, {
+			"QGate": "B2P",
+			"Description": "B2P"
+		}, {
+			"QGate": "P2R",
+			"Description": "P2R"
+		}]
+	}]
+}

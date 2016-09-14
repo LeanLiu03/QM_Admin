@@ -1,0 +1,87 @@
+<mvc:View controllerName="QM_Admin.controller.Process_UserManagement" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
+	height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:tb="sap.ui.table"
+	beforeExit="onBeforeExit">
+	<Page id="pgeUserManagement" showNavButton="true" title="User Management" navButtonPress="onNavButtonPress">
+		<f:SimpleForm id="sfmBasicInfo" editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+			columnsL="2" columnsM="4" class="editableForm" title="User Information">
+			<f:content>
+				<core:Title text="Basic Infomration"/>
+				<Label id="lblUserId" text="UserId" labelFor="iptUserId" required="true"/>
+				<Input id="iptUserId" value="{UserInfo>/UserId}" liveChange="onValueChange" enabled = "{= ${UserInfo>/mode} === 'C'}">
+					<layoutData>
+						<l:GridData span="L5 M5 S6"/>
+					</layoutData>
+				</Input>
+				<Label id="lblUserPass" text="Password" labelFor="iptUserPass" required="true"/>
+				<Input id="iptUserPass" value="{UserInfo>/Pass}" liveChange="onValueChange" visible = "{= ${UserInfo>/mode} === 'C'}">
+					<layoutData>
+						<l:GridData span="L5 M5 S6"/>
+					</layoutData>
+				</Input>
+				<Label id="lblUserPassConf" text="Confirmed Password" labelFor="iptUserPassConf" required="true"/>
+				<Input id="iptUserPassConf" liveChange="onValueChange" visible = "{= ${UserInfo>/mode} === 'C'}">
+					<layoutData>
+						<l:GridData span="L5 M5 S6"/>
+					</layoutData>
+				</Input>
+				<Label id="lblFirstName" text="FirstName" labelFor="iptFirstName"/>
+				<Input id="iptFirstName"  value="{UserInfo>/FirstName}"  liveChange="onValueChange" enabled = "{= ${UserInfo>/mode} !== ''}">
+					<layoutData>
+						<l:GridData span="L5 M5 S6"/>
+					</layoutData>
+				</Input>
+				<Label id="lblLastName" text="LastName" labelFor="iptLastName"/>
+				<Input id="iptLastName"  value="{UserInfo>/LastName}"  liveChange="onValueChange" enabled = "{= ${UserInfo>/mode} !== ''}">
+					<layoutData>
+						<l:GridData span="L5 M5 S6"/>
+					</layoutData>
+				</Input>
+				<Label id="lblMail" text="Mail" labelFor="iptMail" required="true"/>
+				<Input id="iptMail" value="{UserInfo>/Mail}"  liveChange="onValueChange" enabled = "{= ${UserInfo>/mode} !== ''}">
+					<layoutData>
+						<l:GridData span="L5 M5 S6"/>
+					</layoutData>
+				</Input>
+				<core:Title text="Additional Information"/>
+				<Label id="lblDepartment" text="Department" labelFor="iptDepartment"/>
+				<Input id="iptDepartment" value="{UserInfo>/Department}" liveChange="onValueChange" enabled = "{= ${UserInfo>/mode} !== ''}">
+					<layoutData>
+						<l:GridData span="L5 M5 S6"/>
+					</layoutData>
+				</Input>
+				<Label id="lblWorkPhone" text="WorkPhone" labelFor="iptWorkPhone"/>
+				<Input id="iptWorkPhone" value="{UserInfo>/WorkPhone}" liveChange="onValueChange" enabled = "{= ${UserInfo>/mode} !== ''}">
+					<layoutData>
+						<l:GridData span="L5 M5 S6"/>
+					</layoutData>
+				</Input>
+					<Label id="lblMobilePhone" text="WorkPhone" labelFor="iptMobilePhone"/>
+				<Input id="iptMobilePhone" value="{UserInfo>/MobilePhone}" liveChange="onValueChange" enabled = "{= ${UserInfo>/mode} !== ''}">
+					<layoutData>
+						<l:GridData span="L5 M5 S6"/>
+					</layoutData>
+				</Input>
+				<Label id="lblCreatedOn" text="CreatedOn"/>
+				<Text id="txtCreatedOn" text = "{UserInfo>/CreatedOn}">
+					<layoutData>
+						<l:GridData span="L5 M5 S6"/>
+					</layoutData>
+				</Text>
+				<Label id="lblLastLogOn" text="LastLogOn"/>
+				<Text id="txtLastLogOn"  text = "{UserInfo>/LastLogon}"  >
+					<layoutData>
+						<l:GridData span="L5 M5 S6"/>
+					</layoutData>
+				</Text>
+			</f:content>
+		</f:SimpleForm>
+		<footer>
+			<OverflowToolbar id="oftToolbar">
+				<ToolbarSpacer/>
+				<Button id="btnSave" text="Save" type="Emphasized" icon="sap-icon://save" press="onSave" enabled = "{= ${UserInfo>/mode} !== ''}"/>
+				<Button id="btnEdit" text="Edit" icon="sap-icon://edit" press="onEditPress" enabled = "{= ${UserInfo>/mode} === ''}"/>
+				<Button id="btnCancel" text="Cancel" icon="sap-icon://cancel" press="onCancelPress" enabled = "{= ${UserInfo>/mode} === 'U'}"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,36 @@
+<mvc:View controllerName="QM_Admin.controller.QMComponent" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" height="100%"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:tb="sap.ui.table">
+	<Page title = "Component/Activity">
+	<content>
+			<tb:Table id = "tblComponent" rows="{DM_COM>/Component}" cellClick = "onCellClick">
+				<tb:toolbar>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<SearchField width="50%" search="onSearchPress" selectOnFocus="false"/>
+				</Toolbar>
+				</tb:toolbar>
+				<tb:columns>
+					<tb:Column>
+						<Text text="{i18n>Component}"/>
+						<tb:template>
+							<Text text="{DM_COM>CompName}"></Text>
+						</tb:template>
+					</tb:Column>
+					<tb:Column>
+						<Text text="Description"/>
+						<tb:template>
+							<Text text="{DM_COM>Description}"></Text>
+						</tb:template>
+					</tb:Column>
+				</tb:columns>
+			</tb:Table>
+		</content>
+		<footer>
+			<OverflowToolbar id="oftToolbar">
+				<ToolbarSpacer/>
+				<OverflowToolbarButton text="Add" icon="sap-icon://add" press="onAddComponent"/>
+				<OverflowToolbarButton text="Delete" icon="sap-icon://delete" press = "onComponentDelete"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

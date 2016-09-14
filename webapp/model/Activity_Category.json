@@ -1,0 +1,15 @@
+{
+	"Item":[
+		{
+			"Name":"DOC",
+			"Description":"Document"
+		},
+		{
+			"Name":"PRO",
+			"Description":"Priority"
+		},
+		{
+			"Name":"SRV",
+			"Description":"Severity"
+		}]
+}

@@ -1,0 +1,64 @@
+<mvc:View controllerName="QM_Admin.controller.ProcessProjectType" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
+	height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:tb="sap.ui.table" beforeExit = "onBeforeExit">
+	<Page id="pgeProjectType" showNavButton="true" title="Project Type" navButtonPress = "onNavButtonPress">
+		<f:SimpleForm id="sfmBasicInfo" editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+			columnsL="2" columnsM="2" class="editableForm" title="General Data">
+			<f:content>
+				<Label id="lblProjectType" text="{i18n>projectType}" labelFor="iptProjectType"/>
+				<Input id="iptProjectType" value = "{QGate>/Type}" liveChange = "onValueChange" >
+					<layoutData>
+						<l:GridData span="L1 M1 S2"/>
+					</layoutData>
+				</Input>
+				<Input id="iptProjectTypeDesc" value = "{QGate>/Description}" placeholder="Project Type Description" liveChange = "onValueChange">
+					<layoutData>
+						<l:GridData span="L3 M3 S5"/>
+					</layoutData>
+				</Input>
+			</f:content>
+		</f:SimpleForm>
+		<!--Q-Gate-->
+
+				<tb:Table id = "tblQGate" selectionMode = "MultiToggle" rows = "{QGate>/QGate}" >
+					<tb:toolbar>
+						<Toolbar>
+							<Title text = "Q-Gate" />
+							<ToolbarSpacer />
+							<Button id = "btnAdd" icon = "sap-icon://add" press = "onAddQGate" />
+							<Button id = "btnDelete" icon = "sap-icon://delete" press = "onDeleteQGate" />
+						</Toolbar>
+					</tb:toolbar>
+					<tb:columns>
+						<tb:Column>
+							<Text text="QGate"/>
+							<tb:template>
+								<Input value="{QGate>QGate}" liveChange = "onValueChange" id = "iptQGate" enabled = "{= ${QGate>mode} === 'C' }" >
+									<layoutData>
+										<l:GridData span="L1 M1 S2"/>
+									</layoutData>
+								</Input>
+							</tb:template>
+						</tb:Column>
+						<tb:Column>
+							<Text text="Description"/>
+							<tb:template>
+								<Input value="{QGate>Description}" liveChange = "onValueChange" id = "iptQGateDesc" enabled = "{= ${QGate>mode} === 'C' || ${QGate>mode} === 'U'}">
+									<layoutData>
+										<l:GridData span="L3 M3 S4"/>
+									</layoutData>
+								</Input>
+							</tb:template>
+						</tb:Column>
+					</tb:columns>
+				</tb:Table>
+
+		<footer>
+			<OverflowToolbar id="oftToolbar">
+				<ToolbarSpacer/>
+				<Button id="btnSave" text="Save" type = "Emphasized" icon="sap-icon://save" press = "onSave"/>
+				<Button id="btnEdit" text="Edit" icon="sap-icon://edit" press = "onEditPress"/>
+				<Button id="btnCancel" text="Cancel" icon="sap-icon://cancel" press = "onCancelPress"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,39 @@
+{
+	"UserInfo": [{
+		"UserId": "I075123",
+		"Pass": "12345678",
+		"FirstName":"Lean",
+		"LastName": "Liu",
+		"Mail": "Lean.Liu@SAP.Com",
+		"WorkPhone": "02181089011",
+		"MobilePhone": "13587654321",
+		"Department": "CD",
+		"Status": 0,
+		"CreatedOn": "2016-01-01 17:00:00",
+		"LastLogon": "2016-09-10 18:20:00"
+	}, {
+		"UserId": "I068015",
+		"Pass": "12345678",
+		"FirstName": "Jerry",
+		"LastName": "Wang",
+		"Mail": "Jerry.Wang01@SAP.Com",
+		"WorkPhone": "02181089011",
+		"MobilePhone": "13587654321",
+		"Department": "CD",
+		"Status": 0,
+		"CreatedOn": "2016-01-01 17:00:00",
+		"LastLogon": "2016-09-10 18:20:00"
+	}, {
+		"UserId": "I061683",
+		"Pass": "12345678",
+		"FirstName": "Yu",
+		"LastName": "Zhang",
+		"Mail": "Yu02.Zhang@SAP.Com",
+		"WorkPhone": "02181089012",
+		"MobilePhone": "13587664300",
+		"Department": "CD",
+		"Status": 0,
+		"CreatedOn": "2016-01-01 17:00:00",
+		"LastLogon": "2016-09-10 18:20:00"
+	}]
+}

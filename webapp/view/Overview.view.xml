@@ -28,19 +28,23 @@
 					<Text text="{i18n>projectManager}"/>
 				</Column>
 				<Column>
-					<Text text="{i18n>qMManager}"/>
+					<Text text="{i18n>Prim_QMmanager}"/>
+				</Column>
+				<Column>
+					<Text text="{i18n>Second_QMmanager}"/>
 				</Column>
 			</columns>
 			<items>
 				<ColumnListItem type="Active">
 					<cells>
-						<ObjectIdentifier title="{projectData>ProjectName}" text="{projectData>Description}"/>
-						<Text text="{path:'projectData>ProjectType',formatter:'.formatter.showProjectTypeDesc'}"/>
+						<ObjectIdentifier title="{projectData>name}" text="{projectData>Description}"/>
+						<Text text="{path:'projectData>type',formatter:'.formatter.showProjectTypeDesc'}"/>
 						<Text text="{path:'projectData>ProjectSize',formatter:'.formatter.showProjectSizeDesc'}"/>
-						<Text text="{path:'projectData>Methodology',formatter:'.formatter.showProjectMethodologyDesc'}"/>
+						<Text text="{path:'projectData>methodology',formatter:'.formatter.showProjectMethodologyDesc'}"/>
 						<Text text="{path:'projectData>Region',formatter:'.formatter.showRegionDesc'}"/>
-						<Text text="{projectData>ProjectManager}"/>
-						<Text text="{projectData>QMManager}"/>
+						<Text text="{projectData>resp_person.proj_mgr}"/>
+						<Text text="{projectData>resp_person.qm_mgr1}"/>
+						<Text text="{projectData>resp_person.qm_mgr2}"/>
 					</cells>
 				</ColumnListItem>
 			</items>

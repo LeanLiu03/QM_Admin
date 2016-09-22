@@ -3,15 +3,15 @@
 		"CompName":"DOC",
 		"Description":"Document",
 		"Activity":[{
-			"Name":"HLD",
+			"Name":"High Level Design",
 			"Category":"DOC",
 			"Description":"High Level Design"
 		},{
-			"Name":"CGD",
+			"Name":"Configuration Guide",
 			"Category":"PRO",
 			"Description":"Configuration Guide"
 		},{
-			"Name":"TD",
+			"Name":"Technical Document",
 			"Category":"SRV",
 			"Description":"Technical Document"
 		}]
@@ -19,7 +19,7 @@
 		"CompName":"SOXIP",
 		"Description":"SOX/IP",
 			"Activity":[{
-			"Name":"HLD",
+			"Name":"High Level Design",
 			"Category":"DOC",
 			"Description":"High Level Design"
 		}]
@@ -28,7 +28,7 @@
 		"CompName":"QUALITY",
 		"Description":"Quality",
 			"Activity":[{
-			"Name":"HLD",
+			"Name":"High Level Design",
 			"Category":"DOC",
 			"Description":"High Level Design"
 		}]

@@ -12,14 +12,15 @@
 							<!--<l:HorizontalLayout>-->
 							<core:Title text="{i18n>projectData}" emphasized="true"/>
 							<Label id="lblProjectName" text="{i18n>projectName}" labelFor="iptProjectName" required="true"></Label>
-							<Input id="iptProjectName" liveChange = "onDataChange" value = "{ProjectData>/ProjectName}" enabled = "{= ${ProjectData>/mode} === 'C'}">
+							<Input id="iptProjectName" liveChange="onDataChange" value="{ProjectData>/name}" enabled="{= ${ProjectData>/mode} === 'C'}">
 								<layoutData>
 									<l:GridData span="L6 M6 S8"/>
 								</layoutData>
 							</Input>
 							<!--Project Description-->
 							<Label id="lblProjectDesc" text="{i18n>projectDesc}" labelFor="txaProjectDesc"/>
-							<TextArea id="txaProjectDesc" rows="3" liveChange = "onDataChange" value = "{ProjectData>/Description}" enabled = "{= ${ProjectData>/mode} !== ''}">
+							<TextArea id="txaProjectDesc" rows="3" liveChange="onDataChange" value="{ProjectData>/Description}"
+								enabled="{= ${ProjectData>/mode} !== ''}">
 								<layoutData>
 									<l:GridData span="L6 M6 S8"/>
 								</layoutData>
@@ -27,14 +28,16 @@
 							<!--</l:HorizontalLayout>-->
 							<Label id="lblProjectType" text="{i18n>projectType}" labelFor="sltProjectType" required="true"></Label>
 							<!--Project Type-->
-							<Select id="sltProjectType" change="onPrjTypeChange" forceSelection="true" enabled = "{= ${ProjectData>/mode} !== ''}" selectedKey = "{ProjectData>/ProjectType}">
+							<Select id="sltProjectType" change="onPrjTypeChange" forceSelection="true" enabled="{= ${ProjectData>/mode} !== ''}"
+								selectedKey="{ProjectData>/type}">
 								<layoutData>
 									<l:GridData span="L6 M6 S8"/>
 								</layoutData>
 							</Select>
 							<!--Project Size-->
 							<Label id="lblProjectSize" text="{i18n>projectSize}" labelFor="sltProjectSize" required="true"/>
-							<Select id="sltProjectSize" change = "onDataChange" forceSelection="true" enabled = "{= ${ProjectData>/mode} !== ''}" selectedKey = "{ProjectData>/ProjectSize}">
+							<Select id="sltProjectSize" change="onDataChange" forceSelection="true" enabled="{= ${ProjectData>/mode} !== ''}"
+								selectedKey="{ProjectData>/ProjectSize}">
 								<layoutData>
 									<l:GridData span="L6 M6 S8"/>
 								</layoutData>
@@ -47,13 +50,15 @@
 							</Select>
 							<!--Methodology-->
 							<Label id="lblMethodology" text="{i18n>methodology}" labelFor="sltProjectSize" required="true"/>
-							<Select id="sltMethodology" forceSelection="true" enabled = "{= ${ProjectData>/mode} !== ''}" change="onMethodologyChange" selectedKey = "{ProjectData>/Methodology}">
+							<Select id="sltMethodology" forceSelection="true" enabled="{= ${ProjectData>/mode} !== ''}" change="onMethodologyChange"
+								selectedKey="{ProjectData>/methodology}">
 								<layoutData>
 									<l:GridData span="L6 M6 S8"/>
 								</layoutData>
 							</Select>
 							<Label id="lblRegion" text="{i18n>region}" labelFor="sltRegion" required="true"/>
-							<Select id="sltRegion" forceSelection="true" change = "onDataChange" enabled = "{= ${ProjectData>/mode} !== ''}" selectedKey = "{ProjectData>/Region}">
+							<Select id="sltRegion" forceSelection="true" change="onDataChange" enabled="{= ${ProjectData>/mode} !== ''}"
+								selectedKey="{ProjectData>/Region}">
 								<layoutData>
 									<l:GridData span="L6 M6 S8"/>
 								</layoutData>
@@ -68,14 +73,24 @@
 							<core:Title text="{i18n>manager}" emphasized="true"/>
 							<!--Project Manager-->
 							<Label id="lblProjectManager" text="{i18n>projectManager}" labelFor="iptProjectName" required="true"></Label>
-							<Input id="iptProjectManager" liveChange = "onDataChange" showValueHelp="true" enabled = "{= ${ProjectData>/mode} !== ''}" value = "{ProjectData>/ProjectManager}">
+							<Input id="iptProjectManager" liveChange="onDataChange" showValueHelp="true" enabled="{= ${ProjectData>/mode} !== ''}"
+								value="{ProjectData>/proj_mgr}">
 								<layoutData>
 									<l:GridData span="L6 M6 S8"/>
 								</layoutData>
 							</Input>
-							<!--Project Manager-->
-							<Label id="lblQMManager" text="{i18n>qMManager}" labelFor="iptQMManager" required="true"></Label>
-							<Input id="iptQMManager" showValueHelp="true" liveChange = "onDataChange" enabled = "{= ${ProjectData>/mode} !== ''}" value = "{ProjectData>/QMManager}">
+							<!--Prime QM Manager -->
+							<Label id="lblprime_QMManager" text="{i18n>prime_QMManager}" labelFor="iptprime_QMManager" required="true"></Label>
+							<Input id="iptprime_QMManager" showValueHelp="true" liveChange="onDataChange" enabled="{= ${ProjectData>/mode} !== ''}"
+								value="{ProjectData>/qm_mgr1}">
+								<layoutData>
+									<l:GridData span="L6 M6 S8"/>
+								</layoutData>
+							</Input>
+							<!--Secondary QM Manager -->
+							<Label id="lblsecondary_QMManager" text="{i18n>secondary_QMManager}" labelFor="secondary_QMManager" required="true"></Label>
+							<Input id="iptsecondary_QMManager" showValueHelp="true" liveChange="onDataChange" enabled="{= ${ProjectData>/mode} !== ''}"
+								value="{ProjectData>/qm_mgr2}">
 								<layoutData>
 									<l:GridData span="L6 M6 S8"/>
 								</layoutData>
@@ -83,64 +98,327 @@
 						</f:content>
 					</f:SimpleForm>
 				</IconTabFilter>
-				<IconTabFilter id="itfTimeline" text="{i18n>projectTimeline}">
-					<tb:Table id="tblProjectTL" rows="{MD_DATA>/Phase}" visibleRowCount="4">
+				<IconTabFilter id="itfTimeline" text="Timeline">
+					<tb:Table id="tblProjectTL" selectionMode="Single" rows="{MD_Timeline>/Phase}" visibleRowCount="5"
+						rowSelectionChange="onProjectTimeLineSelect">
 						<tb:columns>
 							<tb:Column visible="false">
-								<Text text="{i18n>Phase}"/>
+								<Text text="Phase"/>
 								<tb:template>
-									<Text text="{MD_DATA>PhaseName}" ></Text>
+									<Text text="{MD_Timeline>phase}"></Text>
 								</tb:template>
 							</tb:Column>
 							<tb:Column>
-								<Text text="{i18n>Phase}"/>
+								<Text text="Phase"/>
 								<tb:template>
-									<Text text="{MD_DATA>Description}"></Text>
+									<Text text="{MD_Timeline>description}"></Text>
 								</tb:template>
 							</tb:Column>
 							<tb:Column>
-								<Text text="{i18n>TimeLine}"/>
+								<Text text="Required"/>
 								<tb:template>
-									<DateRangeSelection id="drsUATPhrase" valueFormat="yyyyMMdd" displayFormat="short" value="{MD_DATA>TimeLine}" enabled = "{= ${ProjectData>/mode} !== ''}"></DateRangeSelection>
+									<CheckBox selected="{MD_Timeline>required}" enabled="{= ${ProjectData>/mode} !== ''}"/>
+								</tb:template>
+							</tb:Column>
+							<tb:Column>
+								<Text text="Timeline"/>
+								<tb:template>
+									<DateRangeSelection id="drsUATPhrase" valueFormat="yyyyMMdd" displayFormat="short" enabled="{MD_Timeline>required}" value = "{MD_Timeline>timeLine}"></DateRangeSelection>
+								</tb:template>
+							</tb:Column>
+							<tb:Column>
+								<Text text="Status"/>
+								<tb:template>
+									<Select width="100%" forceSelection="true" selectedKey="{MD_Timeline>status}" change="onDataChange" enabled="{MD_Timeline>required}">
+										<items>
+											<core:Item key="Not Start" text="Not Start"></core:Item>
+											<core:Item key="Not Completed" text="Not Completed"></core:Item>
+											<core:Item key="Completed" text="Completed"></core:Item>
+										</items>
+									</Select>
 								</tb:template>
 							</tb:Column>
 						</tb:columns>
 					</tb:Table>
 					<!--<Panel id="pnlSprint">-->
 					<!--	<content>-->
-					<tb:Table id="tblSPrintList" rows="{SprintData>/sprintList}" visibleRowCount="1">
-						<tb:toolbar>
-							<Toolbar>
-								<Title text="Sprint Detail"/>
-								<ToolbarSpacer/>
-								<Label id="lblSpintCount" text="Sprint Count" labelFor="iptSprintNum"/>
-								<Input id="iptSprintNum" width="5em" enabled = "{= ${ProjectData>/mode} !== ''}"/>
-								<Button id="btnSplit" text="Split" press="onSplitSprint" type="Emphasized" enabled = "{= ${ProjectData>/mode} !== ''}"/>
-							</Toolbar>
-						</tb:toolbar>
-						<tb:columns>
-							<tb:Column>
-								<Text text="Sprint n"/>
-								<tb:template>
-									<Input enabled = "{= ${ProjectData>/mode} !== ''}" value="{SprintData>Sprint_Id}" >
-										<layoutData>
-											<l:GridData span="L1 M1 S2"/>
-										</layoutData>
-									</Input>
-								</tb:template>
-							</tb:Column>
-							<tb:Column>
-								<Text text="Date Range"/>
-								<tb:template>
-									<DateRangeSelection value="{SprintData>Valid_Date}" displayFormat="short" enabled = "{= ${ProjectData>/mode} !== ''}">
-										<layoutData>
-											<l:GridData span="L3 M3 S4"/>
-										</layoutData>
-									</DateRangeSelection>
-								</tb:template>
-							</tb:Column>
-						</tb:columns>
-					</tb:Table>
+					<!--New Tab-->
+					<IconTabBar id="itbTimelineRel" visible="{MD_SelectedTimeline>/required}" expandable="true" class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter id="itfSprint" text="Sprint" visible="{ProjectData>/scrum}">
+								<tb:Table id="tblSPrintList" rows="{MD_SprintList>/sprintList}" visibleRowCount="7">
+									<tb:toolbar>
+										<Toolbar>
+											<Title text="Sprint Detail"/>
+											<ToolbarSpacer/>
+											<Label id="lblSpintCount" text="Sprint Count" labelFor="iptSprintNum"/>
+											<Input id="iptSprintNum" width="5em" enabled="{= ${ProjectData>/mode} !== ''}"/>
+											<Button id="btnSplit" text="Split" press="onSplitSprint" type="Emphasized" enabled="{= ${ProjectData>/mode} !== ''}"/>
+										</Toolbar>
+									</tb:toolbar>
+									<tb:columns>
+										<tb:Column>
+											<Text text="Sprint n"/>
+											<tb:template>
+												<Input enabled="false" value="{MD_SprintList>progress}">
+													<layoutData>
+														<l:GridData span="L1 M1 S2"/>
+													</layoutData>
+												</Input>
+											</tb:template>
+										</tb:Column>
+										<tb:Column>
+											<Text text="Date Range"/>
+											<tb:template>
+												<DateRangeSelection value="{MD_SprintList>timeline}" displayFormat="short" enabled="{= ${ProjectData>/mode} !== ''}">
+													<layoutData>
+														<l:GridData span="L3 M3 S4"/>
+													</layoutData>
+												</DateRangeSelection>
+											</tb:template>
+										</tb:Column>
+										<tb:Column>
+											<Text text="Status"/>
+											<tb:template>
+												<Select width="100%" forceSelection="true" change="onDataChange" enabled="{= ${ProjectData>/mode} !== ''}"
+													selectedKey="{MD_SprintList>status}">
+													<items>
+														<core:Item key="Not Start" text="Not Start"></core:Item>
+														<core:Item key="Not Completed" text="Not Completed"></core:Item>
+														<core:Item key="Completed" text="Completed"></core:Item>
+													</items>
+												</Select>
+											</tb:template>
+										</tb:Column>
+									</tb:columns>
+								</tb:Table>
+							</IconTabFilter>
+							<IconTabFilter id="itfComp" text="Component">
+								<tb:Table id="tblComponent" rows="{MD_COMP>/Component}" selectionMode="Single" visibleRowCount="4"
+									rowSelectionChange="onCompRowSelectionChange">
+									<tb:columns>
+										<tb:Column visible="false">
+											<Text text="Component"/>
+											<tb:template>
+												<Text text="{MD_COMP>comp_type}"></Text>
+											</tb:template>
+										</tb:Column>
+										<tb:Column>
+											<Text text="Component"/>
+											<tb:template>
+												<Text text="{MD_COMP>comp_type}"></Text>
+											</tb:template>
+										</tb:Column>
+										<tb:Column>
+											<Text text="Required"/>
+											<tb:template>
+												<CheckBox selected="{MD_COMP>required}" select="onCompSelect" enabled="{= ${ProjectData>/mode} !== ''}"></CheckBox>
+											</tb:template>
+										</tb:Column>
+										<tb:Column>
+											<Text text="Status"/>
+											<tb:template>
+												<Select width="100%" forceSelection="true" selectedKey="{MD_COMP>status}" change="onDataChange" enabled="{= ${ProjectData>/mode} !== ''}">
+													<items>
+														<core:Item key="Not Start" text="Not Start"></core:Item>
+														<core:Item key="Not Completed" text="Not Completed"></core:Item>
+														<core:Item key="Completed" text="Completed"></core:Item>
+													</items>
+												</Select>
+											</tb:template>
+										</tb:Column>
+									</tb:columns>
+								</tb:Table>
+								<!--<l:HorizontalLayout>-->
+								<!--<l:content>-->
+								<!--<HBox fitContainer="true">-->
+								<tb:Table id="tblActivity" rows="{MD_Activity>/Activity}" visibleRowCount="4">
+									<tb:toolbar>
+										<Toolbar>
+											<Title text="{MD_Activity>/description} Activity"/>
+										</Toolbar>
+									</tb:toolbar>
+									<tb:columns>
+										<tb:Column visible="false">
+											<Text text="{i18n>Name}"/>
+											<tb:template>
+												<Text text="{MD_Activity>act_type}"></Text>
+											</tb:template>
+										</tb:Column>
+										<tb:Column>
+											<Text text="Activity"/>
+											<tb:template>
+												<Text text="{MD_Activity>description}"></Text>
+											</tb:template>
+										</tb:Column>
+										<!--<tb:Column>-->
+										<!--	<Text text="Required"/>-->
+										<!--	<tb:template>-->
+										<!--		<CheckBox select="onDataChange" selected="{MD_Activity>required}" enabled="{MD_Activity>/Activated}"></CheckBox>-->
+										<!--	</tb:template>-->
+										<!--</tb:Column>-->
+										<!--<tb:Column>-->
+										<!--	<Text text="Status"/>-->
+										<!--	<tb:template>-->
+										<!--		<Select width="100%" forceSelection="true" change="onDataChange" enabled="{= ${ProjectData>/mode} !== ''}"-->
+										<!--			selectedKey="{MD_Activity>status}">-->
+										<!--			<items>-->
+										<!--				<core:Item key="Not Start" text="Not Start"></core:Item>-->
+										<!--				<core:Item key="Not Completed" text="Not Completed"></core:Item>-->
+										<!--				<core:Item key="Completed" text="Completed"></core:Item>-->
+										<!--			</items>-->
+										<!--		</Select>-->
+										<!--	</tb:template>-->
+										<!--</tb:Column>-->
+									</tb:columns>
+								</tb:Table>
+							</IconTabFilter>
+							<IconTabFilter id="itfActDistribute" text="Activity Distribution">
+								<tb:Table id="tblActivityList" rows="{ActivityList>/activityList}" selectionMode="Single" visibleRowCount="5"
+									rowSelectionChange="onActivityRowSelect">
+									<tb:toolbar>
+										<Toolbar>
+											<Title text="Activity Distribution"/>
+											<ToolbarSpacer/>
+											<Button id="btnUpdateActivity" text="Update" type="Emphasized" press="onUpdateActivityList"/>
+											<!--<Button id="btnDeleteTeam" press="OnDeleteTeam" icon="sap-icon://delete"/>-->
+										</Toolbar>
+									</tb:toolbar>
+									<tb:columns>
+										<tb:Column visible="{ProjectData>/scrum}">
+											<Text text="Sprint"/>
+											<tb:template>
+												<Text text="{ActivityList>progress}"/>
+											</tb:template>
+										</tb:Column>
+										<tb:Column >
+											<Text text="Team"/>
+											<tb:template>
+												<Text text="{ActivityList>team}"/>
+											</tb:template>
+										</tb:Column>
+										<tb:Column >
+											<Text text="Component"/>
+											<tb:template>
+												<Text text="{ActivityList>comp_type}"/>
+											</tb:template>
+										</tb:Column>
+										<tb:Column >
+											<Text text="Activity"/>
+											<tb:template>
+												<Text text="{ActivityList>act_type}"/>
+											</tb:template>
+										</tb:Column>
+										<tb:Column >
+											<Text text="Due Date"/>
+											<tb:template>
+												<DatePicker change="onDataChange" valueFormat="yyyyMMdd" displayFormat="short" enabled="{= ${ProjectData>/mode} !== ''}"
+													value="{ActivityList>due_date}">
+													<layoutData>
+														<l:GridData span="L3 M3 S6"/>
+													</layoutData>
+												</DatePicker>
+												<!--<Input value="{ActivityList>due_date}"/>-->
+											</tb:template>
+										</tb:Column>
+										<tb:Column >
+											<Text text="Status"/>
+											<tb:template>
+												<Input value="{ActivityList>status}"/>
+												<Select width="100%" forceSelection="true" enabled="{= ${ProjectData>/mode} !== ''}" selectedKey="{ActivityList>status}">
+													<items>
+														<core:Item key="Not Start" text="Not Start"></core:Item>
+														<core:Item key="Not Completed" text="Not Completed"></core:Item>
+														<core:Item key="Completed" text="Completed"></core:Item>
+													</items>
+												</Select>
+											</tb:template>
+										</tb:Column>
+										<tb:Column >
+											<Text text="Wiki"/>
+											<tb:template>
+												<Input value="{ActivityList>wiki}"/>
+											</tb:template>
+										</tb:Column>
+										<tb:Column >
+											<Text text="Link"/>
+											<tb:template>
+												<Input value="{ActivityList>link}"/>
+											</tb:template>
+										</tb:Column>
+										<tb:Column >
+											<Text text="Comment"/>
+											<tb:template>
+												<TextArea value="{ActivityList>comment}"/>
+											</tb:template>
+										</tb:Column>
+									</tb:columns>
+								</tb:Table>
+								<tb:Table id="tblUptAct" selectionMode="Single" rows="{UpdateActivity>/updateActivity}" visibleRowCount="5"
+									rowSelectionChange="onTeamRowSelect" visible="{= ${MD_SelectedActivity>/act_type} !== ''}">
+									<tb:toolbar>
+										<Toolbar>
+											<Title id ="ttlUpdateActivity" text="Update Activity"/>
+											<ToolbarSpacer/>
+											<Button id="btnAddNewActHistory" press="onAddNewActHistory" icon="sap-icon://add"  enabled="{= ${ProjectData>/mode} !== ''}"/>
+											<Button id="btnDeleteActHistory" press="onDeleteActHistory" icon="sap-icon://delete"  enabled="{= ${ProjectData>/mode} !== ''}"/>
+										</Toolbar>
+									</tb:toolbar>
+									<tb:columns>
+										<tb:Column>
+											<Text text="Update Date"/>
+											<tb:template>
+												<DatePicker id="dpkUpdateDate" enabled="{= ${ProjectData>/mode} !== ''}" value="{UpdateActivity>date}" change="onDataChange"
+													valueFormat="yyyyMMdd" displayFormat="short"/></tb:template>
+										</tb:Column>
+										<tb:Column>
+											<Text text="Status"/>
+											<tb:template>
+												<Select width="100%" forceSelection="true" change="onDataChange" enabled="{= ${ProjectData>/mode} !== ''}"
+													selectedKey="{UpdateActivity>status}">
+													<items>
+														<core:Item key="Not Start" text="Not Start"></core:Item>
+														<core:Item key="Not Completed" text="Not Completed"></core:Item>
+														<core:Item key="Completed" text="Completed"></core:Item>
+													</items>
+												</Select>
+											</tb:template>
+										</tb:Column>
+										<tb:Column>
+											<Text text="Document"/>
+											<tb:template>
+												<Select width="100%" forceSelection="true" enabled="{UpdateActivity>doc_enabled}" selectedKey="{UpdateActivity>doc}">
+													<items>
+														<core:Item key="Not Required" text="Not Required"></core:Item>
+														<core:Item key="In Progress" text="In Progress"></core:Item>
+														<core:Item key="Submitted" text="Submitted"></core:Item>
+													</items>
+												</Select>
+											</tb:template>
+										</tb:Column>
+										<tb:Column>
+											<Text text="Severity 1"/>
+											<tb:template>
+												<Input value="{UpdateActivity>severity_info.s1}" enabled="{UpdateActivity>srv_enabled}"/>
+											</tb:template>
+										</tb:Column>
+										<tb:Column>
+											<Text text="Severity 2"/>
+											<tb:template>
+												<Input value="{UpdateActivity>severity_info.s2}" enabled="{UpdateActivity>srv_enabled}"/>
+											</tb:template>
+										</tb:Column>
+										<tb:Column>
+											<Text text="Severity 3"/>
+											<tb:template>
+												<Input value="{UpdateActivity>severity_info.s3}" enabled="{UpdateActivity>srv_enabled}"/>
+											</tb:template>
+										</tb:Column>
+									</tb:columns>
+								</tb:Table>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
 					<!--	</content>-->
 					<!--</Panel>-->
 				</IconTabFilter>
@@ -150,7 +428,7 @@
 						<f:content>
 							<!--Qgate Statue-->
 							<Label id="lblQGateStatus" text="{i18n>qGateStatus}" labelFor="sltQGateStatus"></Label>
-							<Select id="sltQGateStatus" change = "onDataChange" forceSelection="true" enabled = "{= ${ProjectData>/mode} !== ''}">
+							<Select id="sltQGateStatus" change="onDataChange" forceSelection="true" enabled="{= ${ProjectData>/mode} !== ''}">
 								<layoutData>
 									<l:GridData span="L3 M3 S6"/>
 								</layoutData>
@@ -161,12 +439,13 @@
 									<core:Item text="{i18n>qgates_Fail}" key="FAIL"></core:Item>
 								</items>
 							</Select>
-							<Label id="lblQGateDate" text="{i18n>qGateDate}" labelFor="dpkQGateDate"></Label>
-							<DatePicker id="dpkQGateDate" change = "onDataChange" valueFormat="yyyyMMdd" displayFormat="short" placeholder="Q-gate Date" enabled = "{= ${ProjectData>/mode} !== ''}">
-								<layoutData>
-									<l:GridData span="L3 M3 S6"/>
-								</layoutData>
-							</DatePicker>
+							<!--<Label id="lblQGateDate" text="{i18n>qGateDate}" labelFor="dpkQGateDate"></Label>-->
+							<!--<DatePicker id="dpkQGateDate" change="onDataChange" valueFormat="yyyyMMdd" displayFormat="short" placeholder="Q-gate Date"-->
+							<!--	enabled="{= ${ProjectData>/mode} !== ''}">-->
+							<!--	<layoutData>-->
+							<!--		<l:GridData span="L3 M3 S6"/>-->
+							<!--	</layoutData>-->
+							<!--</DatePicker>-->
 						</f:content>
 					</f:SimpleForm>
 					<tb:Table id="tblProjectType" rows="{PT_QGate>/QGate}">
@@ -184,124 +463,68 @@
 								</tb:template>
 							</tb:Column>
 							<tb:Column>
-								<Text text="Activated" />
+								<Text text="Required"/>
 								<tb:template>
-									<CheckBox select = "onDataChange" enabled = "{= ${ProjectData>/mode} !== ''}"></CheckBox>
+									<CheckBox select="onDataChange" enabled="{= ${ProjectData>/mode} !== ''}"></CheckBox>
+								</tb:template>
+							</tb:Column>
+							<tb:Column>
+								<tb:template>
+									<DatePicker change="onDataChange" valueFormat="yyyyMMdd" displayFormat="short" placeholder="Q-gate Date"
+										enabled="{= ${ProjectData>/mode} !== ''}">
+										<layoutData>
+											<l:GridData span="L3 M3 S6"/>
+										</layoutData>
+									</DatePicker>
+								</tb:template>
+							</tb:Column>
+							<tb:Column >
+								<Text text="Status"/>
+								<tb:template>
+									<Select change="onDataChange" forceSelection="true" enabled="{= ${ProjectData>/mode} !== ''}" width="100%">
+										<items>
+											<core:Item text="{i18n>qgates_NA}" key="NA"></core:Item>
+											<core:Item text="{i18n>qgates_Pass}" key="PASS"></core:Item>
+											<core:Item text="{i18n>qgates_Pass_W_Rsv}" key="PASS_W_RSV"></core:Item>
+											<core:Item text="{i18n>qgates_Fail}" key="FAIL"></core:Item>
+										</items>
+									</Select>
 								</tb:template>
 							</tb:Column>
 						</tb:columns>
 					</tb:Table>
 				</IconTabFilter>
-				<IconTabFilter id="itfComponent" text="{i18n>Component}">
-					<tb:Table id="tblComponent" rows="{MD_COMP>/Component}" selectionMode="Single" visibleRowCount="4" rowSelectionChange="onRowSelectionChange">
+				<IconTabFilter id="itfTeam" text="{i18n>Team}">
+					<tb:Table id="tblTeam" rows="{MD_Team>/team}" visibleRowCount="8" rowSelectionChange="onTeamRowSelect">
+						<tb:toolbar>
+							<Toolbar>
+								<Title text="Team List"/>
+								<ToolbarSpacer/>
+								<Button id="btnAddNewTeam" press="onNewTeamAdd" icon="sap-icon://add"/>
+								<Button id="btnDeleteTeam" press="OnDeleteTeam" icon="sap-icon://delete"/>
+							</Toolbar>
+						</tb:toolbar>
 						<tb:columns>
-							<tb:Column visible="false">
-								<Text text="{i18n>CompName}"/>
-								<tb:template>
-									<Text text="{MD_COMP>CompName}"></Text>
-								</tb:template>
-							</tb:Column>
 							<tb:Column>
-								<Text text="{i18n>CompName}"/>
+								<Text text="Team Id"/>
 								<tb:template>
-									<Text text="{MD_COMP>Description}"></Text>
+									<Input value="{MD_Team>team}"/>
 								</tb:template>
 							</tb:Column>
-							<tb:Column>
-								<Text text="{i18n>Activate}"/>
-								<tb:template>
-									<CheckBox selected="{MD_COMP>Activated}" select="onCompSelect" enabled = "{= ${ProjectData>/mode} !== ''}"></CheckBox>
-								</tb:template>
-							</tb:Column>
+							<!--<tb:Column >-->
+							<!--	<Text text="Team"/>-->
+							<!--	<tb:template>-->
+							<!--		<Input value="{MD_Team>team_Name}"/>-->
+							<!--	</tb:template>-->
+							<!--</tb:Column>-->
 						</tb:columns>
 					</tb:Table>
-					<!--<l:HorizontalLayout>-->
-					<!--<l:content>-->
-					<HBox fitContainer="true">
-						<tb:Table id="tblActivity" rows="{MD_Activity>/Activity}" visibleRowCount="4" width="500px" selectionMode="Single"  rowSelectionChange="onActivityRowSelectionChange">
-							<tb:toolbar>
-								<Toolbar>
-									<Title text="{MD_Activity>/Description} Activity"/>
-								</Toolbar>
-							</tb:toolbar>
-							<tb:columns>
-								<tb:Column visible="false">
-									<Text text="{i18n>Name}"/>
-									<tb:template>
-										<Text text="{MD_Activity>Name}"></Text>
-									</tb:template>
-								</tb:Column>
-								<tb:Column>
-									<Text text="{i18n>Description}"/>
-									<tb:template>
-										<Text text="{MD_Activity>Description}"></Text>
-									</tb:template>
-								</tb:Column>
-								<tb:Column>
-									<Text text="{i18n>Activate}"/>
-									<tb:template>
-										<CheckBox select = "onDataChange" text="{MD_Activity>Activated}" enabled="{MD_Activity>/Activated}"></CheckBox>
-									</tb:template>
-								</tb:Column>
-							</tb:columns>
-						</tb:Table>
-						<f:SimpleForm id="sfmDoc" editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
-							columnsL="1" columnsM="1" class="editableForm" visible = "{= ${DM_Activity_Assoc>/Category} !== ''}">
-							<f:toolbar>
-								<Toolbar>
-									<Title text="{i18n>Setting}" />
-								</Toolbar>
-							</f:toolbar>
-							<!--<core:Title text="{i18n>Setting}" emphasized="true"/>-->
-							<Panel id="pnlDoc" headerText="{i18n>Documentation}" visible = "{= ${DM_Activity_Assoc>/Category} === 'DOC'}">
-								<content>
-									<!--<core:Title text="{i18n>Documentation}" emphasized="true"/>-->
-									<RadioButtonGroup>
-										<buttons>
-											<RadioButton select = "onDataChange" id="rbnMandatory" text="Mandatory" enabled = "{= ${ProjectData>/mode} !== ''}"></RadioButton>
-											<RadioButton select = "onDataChange" id="rbnOption" text="Optional" enabled = "{= ${ProjectData>/mode} !== ''}"></RadioButton>
-										</buttons>
-									</RadioButtonGroup>
-								</content>
-							</Panel>
-							<Panel id="pnlPriority" headerText="{i18n>Priority}" visible = "{= ${DM_Activity_Assoc>/Category} === 'PRO'}">
-								<VBox>
-									<HBox>
-										<CheckBox select = "onDataChange" id="ckbP1" text="Priority 1" enabled = "{= ${ProjectData>/mode} !== ''}"/>
-										<Input id="txtP1" liveChange = "onDataChange" width="40px" enabled = "{= ${ProjectData>/mode} !== ''}"/>
-									</HBox>
-									<HBox>
-										<CheckBox select = "onDataChange" id="ckbP2" text="Priority 2" enabled = "{= ${ProjectData>/mode} !== ''}"/>
-										<Input id="txtP2" liveChange = "onDataChange" width="40px" enabled = "{= ${ProjectData>/mode} !== ''}"/>
-									</HBox>
-									<HBox>
-										<CheckBox select = "onDataChange" id="ckbP3" text="Priority 3" enabled = "{= ${ProjectData>/mode} !== ''}"/>
-										<Input id="txtP3" liveChange = "onDataChange" width="40px" enabled = "{= ${ProjectData>/mode} !== ''}"/>
-									</HBox>
-								</VBox>
-							</Panel>
-							<Panel id="pnlSecurity" headerText="{i18n>Security}" visible = "{= ${DM_Activity_Assoc>/Category} === 'SRV'}" >
-								<VBox>
-									<HBox>
-										<CheckBox select = "onDataChange" id="ckbS_High" text="High" selected = "{DM_Activity_Assoc>/Security>SHigh}" enabled = "{= ${ProjectData>/mode} !== ''}"/>
-										<Input id="txtS_High" width="40px"  value = "{DM_Activity_Assoc>/Security>SHigh_Value}" enabled = "{= ${ProjectData>/mode} !== ''}"/>
-									</HBox>
-									<HBox>
-										<CheckBox id="ckbS_Medium" select = "onDataChange" text="Medium" selected = "{DM_Activity_Assoc>/Security>SMedium}" enabled = "{= ${ProjectData>/mode} !== ''}"/>
-										<Input id="txtbS_Medium" liveChange = "onDataChange" width="40px" value = "{DM_Activity_Assoc>/Security>SMedium_Value}" enabled = "{= ${ProjectData>/mode} !== ''}"/>
-									</HBox>
-									<HBox>
-										<CheckBox id="ckbS_Low" select = "onDataChange" text="Low" selected = "{DM_Activity_Assoc>/Security>SLow}" enabled = "{= ${ProjectData>/mode} !== ''}" />
-										<Input id="txtS_Low" liveChange = "onDataChange" width="40px" value = "{DM_Activity_Assoc>/Security>SLow_Value}" enabled = "{= ${ProjectData>/mode} !== ''}" />
-									</HBox>
-								</VBox>
-							</Panel>
-						</f:SimpleForm>
-					</HBox>
-					<!--</l:content>-->
-					<!--</l:HorizontalLayout>-->
-					<!--</HBox>-->
 				</IconTabFilter>
+				<!--<IconTabFilter id="itfComponent" text="{i18n>Component}">-->
+				<!--</l:content>-->
+				<!--</l:HorizontalLayout>-->
+				<!--</HBox>-->
+				<!--</IconTabFilter>-->
 				<IconTabFilter id="itfAdmin" text="{i18n>Adminstrative_Data}">
 					<f:SimpleForm id="sfmAdmin" editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
 						columnsL="2" columnsM="2" class="editableForm">
@@ -333,11 +556,13 @@
 		<footer>
 			<OverflowToolbar id="oftToolbar">
 				<ToolbarSpacer/>
-				<Button id="btnSave" text="Save" type="Emphasized" press = "onSave" icon="sap-icon://save" enabled = "{= ${ProjectData>/mode} === 'C' || ${ProjectData>/mode} === 'U'}"/>
-				<Button id="btnEdit" text="Edit" icon="sap-icon://edit" enabled = "{= ${ProjectData>/mode} === ''}" press = "onEdit" />
-				<Button id="btnCancel" text="Cancel" icon="sap-icon://cancel" press = "onCancelPress" enabled = "{= ${ProjectData>/mode} === 'U'}"/>
-				<OverflowToolbarButton text="Add" icon="sap-icon://add" press = "onAddNewProject" enabled = "{= ${ProjectData>/mode} === '' || ${ProjectData>/mode} === 'U'}"/>
-				<OverflowToolbarButton text="Delete" icon="sap-icon://delete" press = "onDeleteProject" enabled = "{= ${ProjectData>/mode} !== 'C' }"/>
+				<Button id="btnSave" text="Save" type="Emphasized" press="onSave" icon="sap-icon://save"
+					enabled="{= ${ProjectData>/mode} === 'C' || ${ProjectData>/mode} === 'U'}"/>
+				<Button id="btnEdit" text="Edit" icon="sap-icon://edit" enabled="{= ${ProjectData>/mode} === ''}" press="onEdit"/>
+				<Button id="btnCancel" text="Cancel" icon="sap-icon://cancel" press="onCancelPress" enabled="{= ${ProjectData>/mode} === 'U'}"/>
+				<OverflowToolbarButton text="Add" icon="sap-icon://add" press="onAddNewProject"
+					enabled="{= ${ProjectData>/mode} === '' || ${ProjectData>/mode} === 'U'}"/>
+				<OverflowToolbarButton text="Delete" icon="sap-icon://delete" press="onDeleteProject" enabled="{= ${ProjectData>/mode} !== 'C' }"/>
 			</OverflowToolbar>
 		</footer>
 	</Page>

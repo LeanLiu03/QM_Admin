@@ -15,6 +15,15 @@
 		"sourceTemplate": {
 			"id": "ui5template.basicSAPUI5ApplicationProject",
 			"version": "1.32.0"
+		},
+		"dataSources":{
+			"qmdRemote":{
+				"uri":"/destinations/qmd",
+				"type":"OData",
+				"settings":{
+					"odataVersion":"2.0"
+				}
+			}
 		}
 	},
 
@@ -39,7 +48,6 @@
 			"sap_bluecrystal"
 		]
 	},
-
 	"sap.ui5": {
 		"_version": "1.1.0",
 		"rootView": {
@@ -64,7 +72,11 @@
 				"settings": {
 					"bundleName": "QM_Admin.i18n.i18n"
 				}
-			}
+			},
+			"qmdModel":{
+					"type":"sap.ui.model.odata.ODataModel",
+					"dataSource":"qmdRemote"
+				}
 		},
 		"resources": {
 			"css": [{

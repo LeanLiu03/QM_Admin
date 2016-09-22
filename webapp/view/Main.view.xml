@@ -27,9 +27,9 @@
 							<tnt:NavigationListItem text="{i18n>menu_MethodologyDef}" id="nav_MethodologyDef" key="methodologyDef"></tnt:NavigationListItem>
 							<tnt:NavigationListItem text="{i18n>menu_Comp_Act_Def}" id="nav_Comp_Act_Def" key="comp_Act_Def"></tnt:NavigationListItem>
 						</tnt:NavigationListItem>
-						<tnt:NavigationListItem text="{i18n>menu_management}" icon="sap-icon://explorer">
-							<tnt:NavigationListItem text="{i18n>menu_Usr_Management}" id="nav_usr_Management" key="usr_Management"></tnt:NavigationListItem>
-						</tnt:NavigationListItem>
+						<!--<tnt:NavigationListItem text="{i18n>menu_management}" icon="sap-icon://explorer">-->
+						<!--	<tnt:NavigationListItem text="{i18n>menu_Usr_Management}" id="nav_usr_Management" key="usr_Management"></tnt:NavigationListItem>-->
+						<!--</tnt:NavigationListItem>-->
 					</tnt:NavigationList>
 				</tnt:item>
 			</tnt:SideNavigation>
